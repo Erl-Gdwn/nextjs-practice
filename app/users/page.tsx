@@ -12,13 +12,14 @@ interface Company {
 }
 
 export default async function UsersPage() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   const renderProfileCard = (user: User) => {
     const {id, name, company} = user;
     return <ProfileCard key={id} name={name} role={company?.name || 'No Company'}/>
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/my-users')
+    const response = await fetch(`${apiUrl}/api/my-users`)
     const users: User[] = await response.json()
 
     if (users.length === 0) {
