@@ -19,7 +19,7 @@ export default async function UsersPage() {
   }
 
   try {
-    const response = await fetch(`${apiUrl}/api/my-users`)
+    const response = await fetch(`${apiUrl}/api/my-users`, {cache: 'no-store'})
     const users: User[] = await response.json()
 
     if (users.length === 0) {
